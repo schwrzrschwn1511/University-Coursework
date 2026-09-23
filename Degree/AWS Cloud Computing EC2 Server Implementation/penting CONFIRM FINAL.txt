@@ -1,0 +1,118 @@
+
+
+phase 1:
+
+sudo yum update -y
+sudo amazon-linux-extras install -y php8.0 mariadb10.5
+sudo yum install -y httpd
+sudo systemctl start httpd
+sudo systemctl enable httpd
+sudo usermod -a -G apache ec2-user
+/*Refresh EC2 Instance Connect Page*/
+sudo chown -R ec2-user:apache /var/www
+sudo chmod 2775 /var/www
+find /var/www -type d -exec sudo chmod 2775 {} \;
+find /var/www -type f -exec sudo chmod 0664 {} \;
+mkdir file
+cd file
+wget *bucket name for file
+unzip xingbook.zip
+cd xingbook
+cd xingbook
+mv * /var/www/html
+cd /var/www/html
+{
+"Version":"2012-10-17",
+"Statement":[
+{
+"Sid":"PublicReadGetObject",
+"Effect":"Allow",
+"Principal":"*",
+"Action":[
+"s3:GetObject"
+],
+"Resource":[
+"arn:aws:s3:::bookinventorybucket/*"
+//arn ni tukar nama bucket student attendance kita sendiri
+]
+}
+]
+}
+sudo mysql -u root
+use mysql;
+set password for 'root'@'localhost' = password('admin123');
+quit;
+sudo mysql -u root -p
+admin123
+CREATE DATABASE IF NOT EXISTS `simple_attendance_db` DEFAULT CHARACTER SET
+utf8mb4 COLLATE utf8mb4_general_ci;
+quit;
+sudo mysql -h localhost -u root -p simple_attendance_db < simple_attendance_db.sql
+nano config.php
+
+Master username
+admin
+Master password
+admin123
+
+CREATE DATABASE IF NOT EXISTS `simple_attendance_db` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
+simple_attendance_db.
+sudo mysql -h localhost -u root -p simple_attendance_db < simple_attendance_db.sql
+set password for 'root'@'localhost' = password('admin123');
+
+sudo systemctl status mariadb
+sudo systemctl start mariadb
+sudo systemctl enable MariaDB
+
+!!!! change EC2 instance to lab role before proceeding to anything. Security > IAM > labrole
+
+LATEST (10/2/2024)
+endpoint:
+studentattendancedatabase.cwoqz7r06eud.us-east-1.rds.amazonaws.com
+builtV21:
+https://student-attendance-bucket.s3.amazonaws.com/builtV21.zip
+builtV22:
+
+
+
+<?php
+$servername = "studentattendancedatabase.cwoqz7r06eud.us-east-1.rds.amazonaws.com";
+$username = "admin";
+$password = "admin123";
+$dbname = "simple_attendance_db";
+$port ="3306";
+
+$conn = new mysqli ($servername, $username, $password, $dbname);
+
+if($conn->connect_error)
+{
+die("Connection failed: " . $conn->connect_error);
+}
+
+?>
+
+
+Phase 4:
+
+#!/bin/bash
+sudo yum update -y
+sudo amazon-linux-extras install -y php8.0 mariadb10.5
+sudo yum install -y httpd
+sudo systemctl start httpd
+sudo systemctl enable httpd
+sudo systemctl start MariaDB
+sudo systemctl enable mariadb
+sudo usermod -a -G apache ec2-user
+sudo chown -R ec2-user:apache /var/www
+sudo chmod 2775 /var/www
+find /var/www -type d -exec sudo chmod 2775 {} \;
+find /var/www -type f -exec sudo chmod 0664 {} \;
+mkdir stud-att
+cd stud-att
+wget https://student-attendance-bucket.s3.amazonaws.com/builtV22.zip
+unzip builtV22.zip
+cd built
+mv * /var/www/html
+cd /var/www/html
+sudo mysql -h studentattendancedatabase.cwoqz7r06eud.us-east-1.rds.amazonaws.com -u admin -padmin123 simple_attendance_db < simple_attendance_db.sql
+

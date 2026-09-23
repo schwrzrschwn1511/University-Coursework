@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Learning | Math</title>
+    <link rel="stylesheet" href="css/quiz-style.css">
+</head>
+<body>
+    <main class="main">
+        <header class="header">
+            <a href="index.html" class="logo">MATH</a>
+            <nav class="navbar">
+                <a href="index.html">Home</a>
+                <a href="about.html">About</a>
+                <a href="services.html">Services</a>
+                <a href="quiz.html">Quiz</a>
+                <a href="learning.html">Learning</a>
+                <a href="scoreboard.html">Scoreboard</a>
+            </nav>
+        </header>
+        <div class="container">
+            <div class="home">
+                <div class="home-content">
+                    <h1>Welcome to the Math Quiz</h1>
+                    <p>Get ready to test your math skills! Here are some important tips and rules:</p>
+                    <ul>
+                        <li>Read each question carefully.</li>
+                        <li>Take your time to think before answering.</li>
+                        <li>Have fun and do your best!</li>
+                    </ul>
+                    <button class="start-btn" onclick="showUserForm()">Are You Ready to Take the Test?</button>
+                </div>
+            </div>
+            <div class="user-form" id="user-form">
+                <div class="form-content">
+                    <h2>Enter your details</h2>
+                    <input type="text" id="user-name" placeholder="Enter your name" required>
+                    <input type="text" id="user-id" placeholder="Enter your ID" required>
+                    <button class="start-btn" onclick="startQuiz()">Start Quiz</button>
+                </div>
+            </div>
+            <div class="quiz-section" id="quiz-section">
+                <div class="quiz-box">
+                    <div class="quiz-header">
+                        <span id="question-number">Question 1</span>
+                        <span id="header-score">Score: 0%</span>
+                    </div>
+                    <div id="topic-header" class="topic-header"></div>
+                    <div class="question-text" id="question-text"></div>
+                    <div class="option-list" id="option-list"></div>
+                    <div class="quiz-footer">
+                        <span id="question-total">Total: 0/0</span>
+                        <button class="next-btn" id="next-btn" onclick="nextQuestion()">Next</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    <script src="js/questions.js"></script>
+    <script src="js/script.js"></script>
+</body>
+</html>

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Learning | Math</title>
+    <link rel="stylesheet" href="css/learn.css">
+</head>
+
+<body>
+    <main class="main">
+        <header class="header">
+            <a href="index.html" class="logo">MATH</a>
+            <nav class="navbar">
+                <a href="index.html">Home</a>
+                <a href="about.html">About</a>
+                <a href="services.html">Services</a>
+                <a href="quiz.html">Quiz</a>
+                <a href="learning.html">Learning</a>
+                <a href="scoreboard.html">Scoreboard</a>
+            </nav>
+        </header>
+        
+        <section class="learning-section">
+            <div class="container">
+                <h1>Welcome to Math Learning</h1>
+                <div class="topics">
+                    <div class="topic" onclick="showContent('addition')">
+                        <h2>Addition</h2>
+                        <img src="pic/addition.png" alt="Addition">
+                    </div>
+                    <div class="topic" onclick="showContent('subtraction')">
+                        <h2>Subtraction</h2>
+                        <img src="pic/subtraction.png" alt="Subtraction">
+                    </div>
+                    <div class="topic" onclick="showContent('multiplication')">
+                        <h2>Multiplication</h2>
+                        <img src="pic/multiplication.png" alt="Multiplication">
+                    </div>
+                    <div class="topic" onclick="showContent('division')">
+                        <h2>Division</h2>
+                        <img src="pic/division.png" alt="Division">
+                    </div>
+                </div>
+                <div class="content" id="content">
+                    <h2 id="content-title"></h2>
+                    <p id="content-text"></p>
+                    <img id="content-image">
+                    <iframe id="content-video" width="560" height="315" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script src="js/learn.js"></script>
+</body>
+</html>

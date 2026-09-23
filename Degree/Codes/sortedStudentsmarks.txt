@@ -1,0 +1,4 @@
+adam,MS003,20,10
+najwa,MS002,0,0
+qayyum,MS001,20,0
+syasya,MS004,0,20

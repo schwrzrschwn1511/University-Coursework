@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Air Quality Index in Southeast Asia</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <style>
+        .header-table
+        {
+            background-color: #718c7f;
+            font-family: Georgia;
+        }
+        .good {
+            background-color: #00e400; 
+        }
+        .moderate {
+            background-color: #ffff00; 
+        }
+        .unhealthy-for-sensitive {
+            background-color: #ff7e00; 
+        }
+        .unhealthy {
+            background-color: #ff0000;
+        }
+        .very-unhealthy {
+            background-color: #8f3f97; 
+        }
+        .hazardous {
+            background-color: #7e0023; 
+        }
+        .undefined {
+            background-color: #d3d3d3; 
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a href="#">MAIN</a></li>
+            <li><a href="#about-section">ABOUT</a></li> <!-- Link to the about section -->
+        </ul>
+    </nav>
+    <div class="container">
+        <h1>SEAQI </h1>
+        <p> Getting Real-time information about Air Quality Index in Southeast Asia in a split second!</p>
+        <div class="header-side">
+            <iframe src="https://www.iqair.com/air-quality-map" width="100%" height="450" style="border:0;"></iframe>
+        </div>
+        <div class="content">
+            <div class="left-side">
+                <div class="input-group">
+                    <input type="text" id="city-input" placeholder="Enter city name">
+                    <button id="search-btn">Search</button>
+                </div>
+                <div class="map-and-result">
+                    <div id="map-container">
+                        <div id="map"></div>
+                    </div>
+                    <div class="result-group">
+                        <h2 id="city-name"></h2>
+                        <h2 id="aqi-value"></h2>
+                        <table id="aqi-table">
+                            <thead>
+                                <tr>
+                                    <th>AQI Value</th>
+                                    <th>Air Quality</th>
+                                    <th>Indicator</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>0-50</td>
+                                    <td>Good</td>
+                                    <td> <img src="img/good.png" width="50" height="50"></td>
+                                </tr>
+                                <tr>
+                                    <td>51-100</td>
+                                    <td>Moderate</td>
+                                    <td> <img src="img/moderate.png" width="50" height="50"></td>
+                                </tr>
+                                <tr>
+                                    <td>101-150</td>
+                                    <td>Unhealthy for Sensitive Groups</td>
+                                    <td> <img src="img/unhealthy for sensitive.png" width="50" height="50"></td>
+                                </tr>
+                                <tr>
+                                    <td>151-200</td>
+                                    <td>Unhealthy</td>
+                                    <td> <img src="img/unhealthy.png" width="50" height="50"></td>
+                                </tr>
+                                <tr>
+                                    <td>201-300</td>
+                                    <td>Very Unhealthy</td>
+                                    <td> <img src="img/very unhealthy.png" width="50" height="50"></td>
+                                </tr>
+                                <tr>
+                                    <td>301-500</td>
+                                    <td>Hazardous</td>
+                                    <td> <img src="img/hazardous.png" width="50" height="50"></td>
+                                </tr>
+                                <tr>
+                                    <td>No Information</td>
+                                    <td>Undefined</td>
+                                    <td> <img src="img/undefined.png" width="50" height="50"></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="widget-container" id="widget-container">
+            <!-- Widget will be inserted here by JavaScript -->
+        </div>
+        <div id="about-section" class="about-section">
+            <h2>About This Project</h2>
+            <p>This Web Page provides real-time air quality information for various cities in Southeast Asia.
+                Using data from the AQICN API, it displays the AQI values and corresponding air quality
+                indicators on an interactive map.</p>
+            
+            <h3> Meaning of AQI value indicator </h3>
+            <table id="aqi-table">
+                            <thead>
+                                <tr class="header-table">
+                                    <th>AQI Value</th>
+                                    <th>Air Quality</th>
+                                    <th>Health Implication </th><!-- comment -->
+                                    <th>Cautionary Statement</th>
+                                    <th>Indicator</th>
+                                    
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="good">
+                                    <td>0-50</td>
+                                    <td>Good</td>
+                                    <td> Air quality is considered satisfactory, and air pollution poses little or no risk </td>
+                                    <td> None </td>
+                                    <td> <img src="img/good.png" width="50" height="50"></td>
+                                </tr>
+                                <tr class="moderate">
+                                    <td>51-100</td>
+                                    <td>Moderate</td>
+                                    <td> Air quality is acceptable; however, for some pollutants there may be a moderate health concern for a very small number of people who are unusually sensitive to air pollution.</td>
+                                    <td>Active children and adults, and people with respiratory disease, such as asthma, should limit prolonged outdoor exertion. </td>
+                                    <td> <img src="img/moderate.png" width="50" height="50"></td>
+                                </tr>
+                                <tr class="unhealthy-for-sensitive">
+                                    <td>101-150</td>
+                                    <td>Unhealthy for Sensitive Groups</td>
+                                    <td>Members of sensitive groups may experience health effects. The general public is not likely to be affected. </td>
+                                    <td> Active children and adults, and people with respiratory disease, such as asthma, should limit prolonged outdoor exertion. </td>
+                                    <td> <img src="img/unhealthy for sensitive.png" width="50" height="50"></td>
+                                </tr>
+                                <tr class="unhealthy">
+                                    <td>151-200</td>
+                                    <td>Unhealthy</td>
+                                    <td>Everyone may begin to experience health effects; members of sensitive groups may experience more serious health effects</td><!-- comment -->
+                                    <td>Active children and adults, and people with respiratory disease, such as asthma, should avoid prolonged outdoor exertion; everyone else, especially children, should limit prolonged outdoor exertion</td>
+                                    <td> <img src="img/unhealthy.png" width="50" height="50"></td>
+                                </tr>
+                                <tr class="very-unhealthy">
+                                    <td>201-300</td>
+                                    <td>Very Unhealthy</td>
+                                    <td>Health warnings of emergency conditions. The entire population is more likely to be affected. </td><!-- comment -->
+                                    <td>Active children and adults, and people with respiratory disease, such as asthma, should avoid all outdoor exertion; everyone else, especially children, should limit outdoor exertion.</td><!-- comment -->
+                                    <td> <img src="img/very unhealthy.png" width="50" height="50"></td>
+                                </tr>
+                                <tr class="hazardous">
+                                    <td>301-500</td>
+                                    <td>Hazardous</td>
+                                    <td>Health alert: everyone may experience more serious health effects </td><!-- comment -->
+                                    <td> Everyone should avoid all outdoor exertion</td>
+                                    <td> <img src="img/hazardous.png" width="50" height="50"></td>
+                                </tr>
+                                <tr class="undefined">
+                                    <td>No Information</td>
+                                    <td>Undefined</td>
+                                    <td> No information or information cannot be reached </td><!-- comment -->
+                                    <td> Not Related</td>
+                                    <td> <img src="img/undefined.png" width="50" height="50"></td>
+                                </tr>
+                            </tbody>
+                        </table>
+            
+        </div>
+    </div>
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
